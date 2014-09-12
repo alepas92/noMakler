@@ -1,0 +1,81 @@
+body {
+	background-color: #EEEEEE;
+}
+
+.app-title {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 80px;
+	background-color: black;
+	text-align: center;
+	border-bottom: 4px solid #4183D7;
+	color: white;
+}
+
+.multiply-adding,
+.input-cros-request {
+	position: absolute;
+	top: 80px;
+	width: 45%;
+}
+
+.input-cros-request {
+	position: absolute;
+	left: 50%;
+	width: 45%;
+	margin-top: 30px;
+	margin-left: 10px;
+	padding: 10px;
+	background-color: white;
+	height: 50%;
+	-webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.64);
+	-moz-box-shadow:    0px 0px 4px 0px rgba(0, 0, 0, 0.64);
+	box-shadow:         0px 0px 4px 0px rgba(0, 0, 0, 0.64);
+}
+
+.multiply-adding {
+	text-align: center;
+	margin-top: 30px;
+	margin-left: 10px;
+	padding: 10px;
+	background-color: white;
+	height: 30px;
+	-webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.64);
+	-moz-box-shadow:    0px 0px 4px 0px rgba(0, 0, 0, 0.64);
+	box-shadow:         0px 0px 4px 0px rgba(0, 0, 0, 0.64);
+}
+
+#show-maklers-phones,
+#show-nomaklers-phones {
+	background: #4183D7;
+	border: 0px;
+	color: white;
+	height: 30px;
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+#show-maklers-phones:hover,
+#show-nomaklers-phones:hover {
+	background: #22313F;
+}
+
+.loader-result {
+	overflow: auto;
+	position: absolute;
+	top: 150px;
+	width: 45%;
+	margin-top: 30px;
+	margin-left: 10px;
+	padding: 10px;
+	height: 75%;
+	background-color: white;
+	-webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.64);
+	-moz-box-shadow:    0px 0px 4px 0px rgba(0, 0, 0, 0.64);
+	box-shadow:         0px 0px 4px 0px rgba(0, 0, 0, 0.64);	
+}

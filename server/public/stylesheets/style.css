@@ -1,0 +1,46 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.row {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.styled-nav {
+	background-color: #FDE3A7;
+	border-color: #F4B350;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus  {
+	background-color: #FFECDB;
+}
+
+.mp-images {
+	width: 100%;
+}
+
+.search-eng-rent, .sa-margin {
+	margin-top: 30px;
+}
+
+.se-text-centered {
+	line-height: 2.4em;
+}
+
+.button-floated-right {
+	float: right;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+.bordered-bottom {
+	box-sizing: border-box;
+	padding-bottom: 30px;
+	border-bottom: 1px solid #FDE3A7;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CSV parser</title> 
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<header class="app-title"><h1>Makler detector v1.0.0</h1></header>
+	<section class="multiply-adding">
+		<form>
+			<label class="upload-files">Please load your *.csv file:
+				<input type="file" id="csvFileInput" accept=".csv" multiple>
+			</label>
+			<input type="button" id="show-maklers-phones" value="Show makler's phone numbers"></input>
+			<input type="button" id="show-nomaklers-phones" value="Show owner's phone numbers"></input>
+		</form>
+	</section>
+	<section class="input-cros-request" >
+		<form>
+			<label> Tag for detecting
+				<input type="text" placeholder="Enter <tag> for detecting">
+			</label>
+			<fieldset>
+				<input type="text" placeholder="Enter base url"> 
+				<input type="text" placeholder="Incrementing value">
+				<input type="text" placeholder="Static value">
+				<input type="text" placeholder="Incrementing value">
+			</fieldset>
+		</form>
+	</section>
+	<section class="loader-result" id="loader-result">
+		<h3>Makler's phone numbers</h3>
+	</section>
+	<script type="text/javascript" src="read-csv.js"></script>
+</body>
+</html>

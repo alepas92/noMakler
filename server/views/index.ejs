@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html ng-app="noMakler">
+  <head>
+  	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title><%= title %></title>
+    
+    <link rel="stylesheet" href='/stylesheets/bootstrap.min.css'>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  		<div class="container" ng-controller="PanelController as panel">
+  			<!-- Nav bar -->
+  			<nav class="navbar navbar-default" role="navigation" >
+				  <div class="container-fluid styled-nav">  
+				    <div class="navbar-header">
+				      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				        <span class="sr-only">Toggle navigation</span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				      </button>
+				      <a class="navbar-brand" href="#">No Makler</a>
+				    </div>
+
+				    <!-- Collect the nav links, forms, and other content for toggling -->
+				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				      <ul class="nav navbar-nav">
+				        <li ng-class="{ active: panel.isSelected(1)}" class="styled-nav-li">
+				        	<a href ng-click="panel.selectTab(1)">Головна</a>
+				        </li>
+				        <li ng-class="{ active: panel.isSelected(2)}" class="styled-nav-li">
+				        	<a href ng-click="panel.selectTab(2)">Знайти житло</a>
+				        </li>
+				        <li ng-class="{ active: panel.isSelected(3)}" class="styled-nav-li">
+				        	<a href ng-click="panel.selectTab(3)">Подати оголошення</a>
+				        </li>
+				      </ul>
+				      <ul class="nav navbar-nav navbar-right">
+				        <li ng-class="{ active: panel.isSelected(4)}" class="styled-nav-li">
+				        	<a href ng-click="panel.selectTab(4)">Увійти</a>				        	
+				        </li>
+				        <li  ng-class="{ active: panel.isSelected(5)}" class="styled-nav-li">
+				        	<a href ng-click="panel.selectTab(5)">Зареєструватись</a>
+				        </li>
+				</nav>
+
+				<section class="main-page panel" ng-show="panel.isSelected(1)">
+					<p>Головна сторінка =)</p>
+				</section>
+
+				<!-- Search engine -->
+				<section class="search-engine panel" ng-show="panel.isSelected(2)">
+					<div class="row se-row-sized">
+						<div class="col-md-12">
+							<ul id="tabs" class="nav nav-tabs nav-justified" data-tabs="tabs">
+						        <li class="active styled-se-tabnav"><a href="#rent" data-toggle="tab">Я хочу зняти</a></li>
+						        <li class="styled-se-tabnav"><a href="#buy" data-toggle="tab">Я хочу купити</a></li>
+						    </ul>
+						    <div id="my-tab-content" class="tab-content">
+						        <div class="tab-pane active" id="rent">
+						            <div class="row styled-sereng-row">
+						            	<form>
+						            		<!-- Choose city -->
+
+											<div class="col-md-4 search-eng-rent"><span class="se-text-centered">Оберіть місто</span></div>
+						            		<div class="col-md-8 search-eng-rent">
+						            			<select class="form-control">
+													<option>Львів</option>
+												</select>
+						            		</div>
+
+						            		<div class="col-md-4 search-eng-rent">Виберіть бажаний район міста</div>
+						            		<div class="col-md-8 search-eng-rent">
+						            			<label class="checkbox-inline">
+													<input type="checkbox"  value="shevchenkivskii"> Шевченківський
+												</label>
+												<label class="checkbox-inline">
+													<input type="checkbox"  value="luchakivckii"> Личаківський
+												</label>
+												<label class="checkbox-inline">
+													<input type="checkbox"  value="suhivskii"> Сихівський
+												</label>
+												<label class="checkbox-inline">
+													<input type="checkbox"  value="frankivskii"> Франківський
+												</label>
+												<label class="checkbox-inline">
+													<input type="checkbox"  value="zaliznuchnuii"> Залізничний
+												</label>
+												<label class="checkbox-inline">
+													<input type="checkbox"  value="halutskuii"> Галицький
+												</label>
+						            		</div>
+
+											<!-- Type of house -->
+														
+						            		<div class="col-md-4 search-eng-rent"><span class="se-text-centered">Тип нерухомості</span></div>
+						            		<div class="col-md-8 search-eng-rent">
+						            			<select class="form-control">
+													<option>Місце в кімнаті</option>
+													<option>Кімната</option>
+													<option>Квартира</option>
+													<option>Будинок</option>
+													<option>Дача</option>
+												</select>
+						            		</div>
+											
+											<!-- Amount of rooms in flat -->
+
+						            		<div class="col-md-4 search-eng-rent"><span class="se-text-centered">Виберіть кількість кімнат</span></div>
+						            		<div class="col-md-8 search-eng-rent">
+						            			<select class="form-control">
+													<option>1</option>
+													<option>2</option>
+													<option>3</option>
+													<option>4</option>
+													<option>5</option>
+												</select>
+						            		</div>
+
+						            		<!-- What tech needed -->
+
+						            		<div class="col-md-4 search-eng-rent">Яка побутова техніка обов'язкова?</div>
+						            		<div class="col-md-8 search-eng-rent">
+						            			<label class="checkbox-inline">
+													<input type="checkbox" value="holodulnuk"> Холодильник
+												</label>
+												<label class="checkbox-inline">
+													<input type="checkbox" value="pralka"> Пральна машина
+												</label>
+												<label class="checkbox-inline">
+													<input type="checkbox" value="televisor"> Телевізор
+												</label>
+						            		</div>
+
+						            		<!-- Who will live -->
+
+						            		<div class="col-md-4 search-eng-rent"><span class="se-text-centered">Хто буде жити?</span></div>
+						            		<div class="col-md-8 search-eng-rent">
+						            			<select class="form-control">
+													<option>Один хлопець/чоловік</option>
+													<option>Одна дівчина/жінка</option>
+													<option>Декілька хлопців</option>
+													<option>Декілька дівчат</option>
+													<option>Пара</option>
+													<option>Сімейна пара без дітей</option>
+													<option>Сімейна пара з дітьми</option>
+												</select>
+						            		</div>
+											
+											<!-- Terms -->
+
+						            		<div class="col-md-4 search-eng-rent"><span class="se-text-centered">На який термін?</span></div>
+						            		<div class="col-md-8 search-eng-rent">
+						            			<select class="form-control">
+													<option>Подобово</option>
+													<option>1 місяць</option>
+													<option>Довготривалий</option>
+												</select>
+						            		</div>
+
+
+						            		<!-- Price -->
+
+											<div class="col-md-4 search-eng-rent"><span class="se-text-centered">Ціна в околі</span></div>
+											<div class="col-md-8 search-eng-rent">
+												<input type="text" class="form-control" placeholder="Введіть бажану ціну за місяць">
+											</div>
+
+											<div class="col-md-12">
+												<button type="button" class="btn btn-success button-floated-right">Знайти</button>
+											</div>
+						            	</form>
+						            </div>
+						        </div>
+
+								<!-- Buy section -->
+
+						        <div class="tab-pane" id="buy">
+
+															            		<!-- Choose city -->
+
+									<div class="col-md-4 search-eng-rent"><span class="se-text-centered">Оберіть місто</span></div>
+						            <div class="col-md-8 search-eng-rent">
+						            	<select class="form-control">
+											<option>Львів</option>
+										</select>
+						            </div>
+
+						            <div class="col-md-4 search-eng-rent">Виберіть бажаний район міста</div>
+								    <div class="col-md-8 search-eng-rent">
+								        <label class="checkbox-inline">
+											<input type="checkbox"  value="shevchenkivskii"> Шевченківський
+										</label>
+										<label class="checkbox-inline">
+											<input type="checkbox"  value="luchakivckii"> Личаківський
+										</label>
+										<label class="checkbox-inline">
+											<input type="checkbox"  value="suhivskii"> Сихівський
+										</label>
+										<label class="checkbox-inline">
+											<input type="checkbox"  value="frankivskii"> Франківський
+										</label>
+										<label class="checkbox-inline">
+											<input type="checkbox"  value="zaliznuchnuii"> Залізничний
+										</label>
+										<label class="checkbox-inline">
+											<input type="checkbox"  value="halutskuii"> Галицький
+										</label>
+								    </div>
+
+								    											<!-- Type of house -->
+														
+						            <div class="col-md-4 search-eng-rent"><span class="se-text-centered">Тип нерухомості</span></div>
+						            <div class="col-md-8 search-eng-rent">
+						            	<select class="form-control">
+											<option>Квартира</option>
+											<option>Будинок</option>
+											<option>Дача</option>
+										</select>
+						            </div>
+								    
+								    <div class="col-md-4 search-eng-rent"><span class="se-text-centered">Виберіть кількість кімнат</span></div>
+						            <div class="col-md-8 search-eng-rent">
+						            	<select class="form-control">
+												<option>1</option>
+												<option>2</option>
+												<option>3</option>
+												<option>4</option>
+												<option>5</option>
+										</select>
+						            </div>
+						            
+						            <div class="col-md-4 search-eng-rent"><span class="se-text-centered">Ціна в околі</span></div>
+									<div class="col-md-8 search-eng-rent">
+										<input type="text" class="form-control" placeholder="Введіть бажану ціну">
+									</div>
+									
+									<div class="col-md-4 search-eng-rent"><span class="se-text-centered">Чи можливі різноманітні домовленності</span></div>
+								    <div class="col-md-8 search-eng-rent">
+								        <select class="form-control">
+												<option>Так</option>
+												<option>Ні</option>
+										</select>
+								    </div>
+
+								    <div class="col-md-12">
+										<button type="button" class="btn btn-success button-floated-right">Знайти</button>
+									</div>
+						        </div>
+						        
+						    </div>
+						</div>
+					</div>
+				</section>
+					<!-- ********************************************************************** -->
+					<!-- ********************************************************************** -->
+					<!-- ********************************************************************** -->
+					<!-- ************************SUBMIT AN ADVERTISEMENT*********************** -->
+					<!-- ********************************************************************** -->
+					<!-- ********************************************************************** -->
+					<!-- ********************************************************************** -->
+				<section class="submit-advertisement panel" ng-show="panel.isSelected(3)">
+					<div class="row">
+						<form>
+							<header class="col-md-12">
+								<h3>Оформлення заявки подачі оголошення</h3>
+							</header>
+							<div class="col-md-4 se-text-centered sa-margin">Введіть Ваше ім'я</div>
+							<div class="col-md-8 sa-margin">
+								<input type="text" class="form-control" placeholder="Ім'я">
+							</div>
+							<div class="col-md-4 se-text-centered sa-margin">Введіть Ваше прізвище</div>
+							<div class="col-md-8 sa-margin">
+								<input type="text" class="form-control" placeholder="Прізвище">
+							</div>
+							<div class="col-md-4 se-text-centered sa-margin">Введіть по-батькові</div>
+							<div class="col-md-8 sa-margin">
+								<input type="text" class="form-control" placeholder="По-батькові">
+							</div>
+							<div class="col-md-4 se-text-centered sa-margin">Введіть номер телефону</div>
+							<div class="col-md-8 sa-margin">
+								<div class="input-group">
+							      <div class="input-group-addon">+380</div>
+							      <input class="form-control" type="text" placeholder="Ваш номер телефону без врахування вказаних цифр">
+							    </div>
+							</div>
+							<div class="col-md-4 se-text-centered sa-margin">Введіть Вашу адресу електронної пошти</div>
+							<div class="col-md-8 sa-margin bordered-bottom">
+								<div class="input-group">
+							      <div class="input-group-addon">@</div>
+							      <input class="form-control" type="text" placeholder="Ваша електронна адреса">
+							    </div>
+							</div>
+
+							<div class="col-md-4 search-eng-rent"><span class="se-text-centered">Оберіть бажаний тип операції</span></div>
+							<div class="col-md-8 search-eng-rent">
+								<select class="form-control">
+									<option>Здача в оренду</option>
+									<option>Продаж</option>
+								</select>
+							</div>
+
+							<div class="col-md-4 search-eng-rent"><span class="se-text-centered">Оберіть місто</span></div>
+						            		<div class="col-md-8 search-eng-rent">
+						            			<select class="form-control">
+													<option>Львів</option>
+												</select>
+						            		</div>
+
+						            		<div class="col-md-4 search-eng-rent">Виберіть бажаний район міста</div>
+						            		<div class="col-md-8 search-eng-rent">
+						            			<label class="checkbox-inline">
+													<input type="checkbox"  value="shevchenkivskii"> Шевченківський
+												</label>
+												<label class="checkbox-inline">
+													<input type="checkbox"  value="luchakivckii"> Личаківський
+												</label>
+												<label class="checkbox-inline">
+													<input type="checkbox"  value="suhivskii"> Сихівський
+												</label>
+												<label class="checkbox-inline">
+													<input type="checkbox"  value="frankivskii"> Франківський
+												</label>
+												<label class="checkbox-inline">
+													<input type="checkbox"  value="zaliznuchnuii"> Залізничний
+												</label>
+												<label class="checkbox-inline">
+													<input type="checkbox"  value="halutskuii"> Галицький
+												</label>
+						            		</div>
+
+											<!-- Type of house -->
+														
+						            		<div class="col-md-4 search-eng-rent"><span class="se-text-centered">Тип нерухомості</span></div>
+						            		<div class="col-md-8 search-eng-rent">
+						            			<select class="form-control">
+													<option>Місце в кімнаті</option>
+													<option>Кімната</option>
+													<option>Квартира</option>
+													<option>Будинок</option>
+													<option>Дача</option>
+												</select>
+						            		</div>
+											
+											<!-- Amount of rooms in flat -->
+
+						            		<div class="col-md-4 search-eng-rent"><span class="se-text-centered">Виберіть кількість кімнат</span></div>
+						            		<div class="col-md-8 search-eng-rent">
+						            			<select class="form-control">
+													<option>1</option>
+													<option>2</option>
+													<option>3</option>
+													<option>4</option>
+													<option>5</option>
+												</select>
+						            		</div>
+
+						            		<!-- What tech needed -->
+
+						            		<div class="col-md-4 search-eng-rent">Яка є побутова техніка?</div>
+						            		<div class="col-md-8 search-eng-rent">
+						            			<label class="checkbox-inline">
+													<input type="checkbox" value="holodulnuk"> Холодильник
+												</label>
+												<label class="checkbox-inline">
+													<input type="checkbox" value="pralka"> Пральна машина
+												</label>
+												<label class="checkbox-inline">
+													<input type="checkbox" value="televisor"> Телевізор
+												</label>
+						            		</div>
+
+						            		<!-- Who will live -->
+
+						            		<div class="col-md-4 search-eng-rent"><span class="se-text-centered">Кого візьмете жити?</span></div>
+						            		<div class="col-md-8 search-eng-rent">
+						            			<select class="form-control">
+													<option>Один хлопець/чоловік</option>
+													<option>Одна дівчина/жінка</option>
+													<option>Декілька хлопців</option>
+													<option>Декілька дівчат</option>
+													<option>Пара</option>
+													<option>Сімейна пара без дітей</option>
+													<option>Сімейна пара з дітьми</option>
+												</select>
+						            		</div>
+											
+											<!-- Terms -->
+
+						            		<div class="col-md-4 search-eng-rent"><span class="se-text-centered">На який термін здам?</span></div>
+						            		<div class="col-md-8 search-eng-rent">
+						            			<select class="form-control">
+													<option>Подобово</option>
+													<option>1 місяць</option>
+													<option>Довготривалий</option>
+												</select>
+						            		</div>
+
+											<div class="col-md-4 search-eng-rent"><span class="se-text-centered">Чи можливі різноманітні домовленності?</span></div>
+						            		<div class="col-md-8 search-eng-rent">
+						            			<select class="form-control">
+													<option>Так</option>
+													<option>Ні</option>
+												</select>
+						            		</div>
+
+						            		<!-- Price -->
+
+											<div class="col-md-4 search-eng-rent"><span class="se-text-centered">Ціна</span></div>
+											<div class="col-md-8 search-eng-rent">
+												<input type="text" class="form-control" placeholder="Введіть бажану ціну за місяць">
+											</div>
+
+											<div class="col-md-4 search-eng-rent"><span class="se-text-centered">Ціна без урахування комунальних послуг?</span></div>
+						            		<div class="col-md-8 search-eng-rent">
+						            			<select class="form-control">
+													<option>Так</option>
+													<option>Ні</option>
+												</select>
+						            		</div>
+
+											<div class="col-md-12">
+												<button type="button" class="btn btn-success button-floated-right">Подати заявку</button>
+											</div>
+						</form>
+					</div>
+				</section>
+				<section class="panel" ng-show="panel.isSelected(4)">
+					123123123
+				</section>
+				<section class="panel" ng-show="panel.isSelected(5)">
+					123123123
+				</section>  		
+
+    <script src="/javascripts/jquery.min.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <script src="/javascripts/angular.min.js"></script>
+    <script src="/javascripts/module/app.js"></script>
+  </body>
+</html>

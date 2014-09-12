@@ -1,0 +1,52 @@
+<html>
+<head>
+	<title>Page parser</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.ajax-cross-origin.min.js"></script>
+</head>
+
+<body>
+<input type="text" id="url" style="width: 400px">
+<input type="button" id="btn" value="Get JSON">
+<br/><br/>
+<div class="one">123</div>
+<div class="one">456</div>
+<div id="test"></div>
+
+<script type="text/javascript">
+$(function() {	
+	$( '#btn' ).click(function(){
+		var url = $( '#url' ).val()
+		
+		$.ajax({
+		  crossOrigin: true,
+		  url: url,
+		  charset: 'windows-1251',
+
+		  context: {},
+		  success: function(data) {
+			  //alert(data);
+			  $( '#test' ).html(data);
+			}
+		})
+		.done(function( data, textStatus, jqXHR ) {
+			//alert(data);
+		});
+	});
+}); 
+</script>
+
+<script>
+function getAllNumbers() {
+	var allNumbers = $("span>nobr")
+	var len = $("span>nobr").length;
+	console.log(len);
+	for (var i = 0; i < len; i++) {
+		console.log(allNumbers[i]);
+	}
+};
+</script>
+
+</body>
+</html>
