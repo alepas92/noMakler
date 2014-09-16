@@ -6,7 +6,9 @@
     <title><%= title %></title>
     
     <link rel="stylesheet" href='/stylesheets/bootstrap.min.css'>
+    <link rel="stylesheet" href='/stylesheets/responsiveslides.css'>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href='http://fonts.googleapis.com/css?family=Fira+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
   </head>
   <body>
   		<div class="container" ng-controller="PanelController as panel">
@@ -20,7 +22,7 @@
 				        <span class="icon-bar"></span>
 				        <span class="icon-bar"></span>
 				      </button>
-				      <a class="navbar-brand" href="#">No Makler</a>
+				      <a class="navbar-brand" href="#">NO MAKLER - УКРАЇНА</a>
 				    </div>
 
 				    <!-- Collect the nav links, forms, and other content for toggling -->
@@ -30,7 +32,7 @@
 				        	<a href ng-click="panel.selectTab(1)">Головна</a>
 				        </li>
 				        <li ng-class="{ active: panel.isSelected(2)}" class="styled-nav-li">
-				        	<a href ng-click="panel.selectTab(2)">Знайти житло</a>
+				        	<a href ng-click="panel.selectTab(2)">Житло в новобудові</a>
 				        </li>
 				        <li ng-class="{ active: panel.isSelected(3)}" class="styled-nav-li">
 				        	<a href ng-click="panel.selectTab(3)">Подати оголошення</a>
@@ -44,14 +46,25 @@
 				        	<a href ng-click="panel.selectTab(5)">Зареєструватись</a>
 				        </li>
 				</nav>
-
-				<section class="main-page panel" ng-show="panel.isSelected(1)">
-					<p>Головна сторінка =)</p>
-				</section>
-
-				<!-- Search engine -->
-				<section class="search-engine panel" ng-show="panel.isSelected(2)">
+				
+				<section class="search-engine main-page panel" ng-show="panel.isSelected(1)">
 					<div class="row se-row-sized">
+						<div class="col-md-7 help-f-m">
+							<p class="attention-text">Знаєте номер маклера? - Впишіть його у форму та допоможіть проекту!</p> 
+						</div>
+						<div class="col-md-3 help-f-m">
+							<input type="text" class="form-control hfm-phone-input" placeholder="Введіть номер сюди">
+							
+						</div>
+						<div class="col-md-2 help-f-m">
+							<button type="button" class="btn btn-warning">Перевірити</button>
+						</div>
+						<div class="col-md-12">
+							<ul class="rslides">
+							  <li><img src="images/pic6.jpg" alt=""></li>
+							  <li><img src="images/pic5.jpg" alt=""></li>
+							</ul>
+						</div>
 						<div class="col-md-12">
 							<ul id="tabs" class="nav nav-tabs nav-justified" data-tabs="tabs">
 						        <li class="active styled-se-tabnav"><a href="#rent" data-toggle="tab">Я хочу зняти</a></li>
@@ -253,6 +266,13 @@
 						</div>
 					</div>
 				</section>
+
+				<section class="new-house panel" ng-show="panel.isSelected(2)">
+					<p>Нерухомість в новобудовах</p>
+				</section>
+
+				<!-- Search engine -->
+
 					<!-- ********************************************************************** -->
 					<!-- ********************************************************************** -->
 					<!-- ********************************************************************** -->
@@ -269,14 +289,6 @@
 							<div class="col-md-4 se-text-centered sa-margin">Введіть Ваше ім'я</div>
 							<div class="col-md-8 sa-margin">
 								<input type="text" class="form-control" placeholder="Ім'я">
-							</div>
-							<div class="col-md-4 se-text-centered sa-margin">Введіть Ваше прізвище</div>
-							<div class="col-md-8 sa-margin">
-								<input type="text" class="form-control" placeholder="Прізвище">
-							</div>
-							<div class="col-md-4 se-text-centered sa-margin">Введіть по-батькові</div>
-							<div class="col-md-8 sa-margin">
-								<input type="text" class="form-control" placeholder="По-батькові">
 							</div>
 							<div class="col-md-4 se-text-centered sa-margin">Введіть номер телефону</div>
 							<div class="col-md-8 sa-margin">
@@ -376,6 +388,7 @@
 						            		<div class="col-md-4 search-eng-rent"><span class="se-text-centered">Кого візьмете жити?</span></div>
 						            		<div class="col-md-8 search-eng-rent">
 						            			<select class="form-control">
+						            				<option>Будь-кого</option>
 													<option>Один хлопець/чоловік</option>
 													<option>Одна дівчина/жінка</option>
 													<option>Декілька хлопців</option>
@@ -405,6 +418,8 @@
 												</select>
 						            		</div>
 
+
+
 						            		<!-- Price -->
 
 											<div class="col-md-4 search-eng-rent"><span class="se-text-centered">Ціна</span></div>
@@ -418,6 +433,21 @@
 													<option>Так</option>
 													<option>Ні</option>
 												</select>
+						            		</div>
+
+						            		<div class="col-md-4 search-eng-rent"><span class="se-text-centered">Опишіть об'єкт нерухомості</span></div>
+						            		<div class="col-md-8 search-eng-rent">
+						            			<textarea class="form-control" rows="3"></textarea>
+						            		</div>
+
+						            		<div class="col-md-4 search-eng-rent"><span class="se-text-centered">Особливі примітки</span></div>
+						            		<div class="col-md-8 search-eng-rent">
+						            			<textarea class="form-control" rows="3"></textarea>
+						            		</div>
+
+						            		<div class="col-md-4 search-eng-rent"><span class="se-text-centered">Завантажте будь ласка фотографії оселі</span></div>
+						            		<div class="col-md-8 search-eng-rent">
+						            			<input type="file">
 						            		</div>
 
 											<div class="col-md-12">
@@ -434,8 +464,14 @@
 				</section>  		
 
     <script src="/javascripts/jquery.min.js"></script>
+    <script src="/javascripts/responsiveslides.js"></script>
     <script src="/javascripts/bootstrap.min.js"></script>
     <script src="/javascripts/angular.min.js"></script>
     <script src="/javascripts/module/app.js"></script>
+    <script>
+  $(function() {
+    $(".rslides").responsiveSlides();
+  });
+</script>
   </body>
 </html>

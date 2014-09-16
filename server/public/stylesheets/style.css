@@ -1,10 +1,16 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: url("../images/background.jpg");
 }
 
 a {
   color: #00B7FF;
+}
+
+.main-page, .new-house, .submit-advertisement {
+	border-radius: 10px;
+	box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.3);
 }
 
 .row {
@@ -13,12 +19,39 @@ a {
 }
 
 .styled-nav {
-	background-color: #FDE3A7;
-	border-color: #F4B350;
+	border-radius: 15px;
+	background-color: #2980b9;
+	border: 1px solid #3498db;
+	/*box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.3);*/
+}
+
+.navbar-default {
+	border: 0px;
+	color: white;
 }
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus  {
-	background-color: #FFECDB;
+	background-color: #3498db;
+	color: white;
+}
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
+	color: white;
+	background-color: #3498db;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: white;
+}
+
+.navbar-brand {
+	font-family: 'Fira Sans', sans-serif;
+}
+
+.navbar-default .navbar-brand:hover, 
+.navbar-default .navbar-brand:focus, 
+.navbar-default .navbar-brand {
+	color: white;
 }
 
 .mp-images {
@@ -30,7 +63,7 @@ a {
 }
 
 .se-text-centered {
-	line-height: 2.4em;
+	line-height: 2.2em;
 }
 
 .button-floated-right {
@@ -43,4 +76,27 @@ a {
 	box-sizing: border-box;
 	padding-bottom: 30px;
 	border-bottom: 1px solid #FDE3A7;
+}
+
+.attention-text {
+	text-align: center;
+	font-size: larger;
+	color: #F4B350;
+	font-weight: 700;
+	line-height: 2.3em;
+	font-family: 'Fira Sans', sans-serif;
+}
+
+.help-f-m {
+	margin-top: 30px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.hfm-phone-input {
+	text-align: center;
+}
+
+.rslides img {
+	margin-bottom: 40px;
 }
