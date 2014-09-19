@@ -268,21 +268,20 @@
 				</section>
 
 				<section class="new-house panel" ng-show="panel.isSelected(2)">
-					<p>Нерухомість в новобудовах</p>
+					<div class="row se-row-sized">
+						<div class="col-md-12">
+							<div class="alert alert-info adv-alert" role="alert">Вітаємо! Ви зайшли на безкоштовну платформу розміщення оголошень продажу нового житла.</div>
+						</div>
+					</div>
 				</section>
 
-				<!-- Search engine -->
 
-					<!-- ********************************************************************** -->
-					<!-- ********************************************************************** -->
-					<!-- ********************************************************************** -->
-					<!-- ************************SUBMIT AN ADVERTISEMENT*********************** -->
-					<!-- ********************************************************************** -->
-					<!-- ********************************************************************** -->
-					<!-- ********************************************************************** -->
 				<section class="submit-advertisement panel" ng-show="panel.isSelected(3)">
 					<div class="row">
 						<form>
+							<div class="col-md-12">
+								<div class="alert alert-info adv-alert" role="alert">Подавати оголошення можна не проходячи попередню реєстрацію.</div>
+							</div>
 							<header class="col-md-12">
 								<h3>Оформлення заявки подачі оголошення</h3>
 							</header>
@@ -456,11 +455,62 @@
 						</form>
 					</div>
 				</section>
-				<section class="panel" ng-show="panel.isSelected(4)">
-					123123123
+				<section class="panel autherization" ng-show="panel.isSelected(4)">
+					<div class="row se-row-sized">
+						<div class="col-md-12">
+							<div class="alert alert-info adv-alert" role="alert">Авторизація на сайті необхідна лише забудовникам для отримання можливості розміщувати свої оголошення.</div>
+						</div>	
+						<div class="col-md-4"></div>
+						<div class="col-md-4">
+							<p class="auth-info">Для входу на сайт введіть номер телефону</p>
+							<div class="input-group auth-phone">
+      							<div class="input-group-addon">Ваш номер телефону</div>
+      							<input class="form-control" type="phone">
+   							</div>
+   							<button type="button" class="btn btn-success auth-enter">Увійти</button>
+						</div>
+						<div class="col-md-4"></div>
+					</div>
 				</section>
-				<section class="panel" ng-show="panel.isSelected(5)">
-					123123123
+
+				<section class="panel register" ng-show="panel.isSelected(5)">
+					<div class="row se-row-sized">
+						<div class="col-md-12">
+							<div class="alert alert-info adv-alert" role="alert">Реєстрація на сайті необхідна лише для забудовників.</div>
+						</div>	
+						<form>
+							<header class="col-md-12">
+								<h3>Реєстрація на сайті для забудовників</h3>
+							</header>
+							<div class="col-md-4 se-text-centered sa-margin">Введіть ім'я контактної особи</div>
+							<div class="col-md-8 sa-margin">
+								<input type="text" class="form-control" placeholder="Ім'я">
+							</div>
+							<div class="col-md-4 se-text-centered sa-margin">Введіть номер телефону для входу на сайт</div>
+							<div class="col-md-8 sa-margin">
+								<div class="input-group">
+							      <div class="input-group-addon">+380</div>
+							      <input class="form-control" type="text" placeholder="Ваш номер телефону без врахування вказаних цифр">
+							    </div>
+							</div>
+							<div class="col-md-4 se-text-centered sa-margin">Введіть електронну адресу контактної особи</div>
+							<div class="col-md-8 sa-margin bordered-bottom">
+								<div class="input-group">
+							      <div class="input-group-addon">@</div>
+							      <input class="form-control" type="text" placeholder="Ваша електронна адреса">
+							    </div>
+							</div>
+
+							<div class="col-md-4 search-eng-rent"><span class="se-text-centered">Введіть назву підприємства</span></div>
+							<div class="col-md-8 search-eng-rent">
+								<input type="text" class="form-control">
+							</div>
+							<div class="col-md-12">
+								<button type="button" class="btn btn-success auth-enter">Зареєструватись</button>
+							</div>	
+						</form>
+
+					</div>
 				</section>  		
 
     <script src="/javascripts/jquery.min.js"></script>

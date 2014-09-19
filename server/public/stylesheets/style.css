@@ -100,3 +100,24 @@ a {
 .rslides img {
 	margin-bottom: 40px;
 }
+
+.auth-enter {
+	margin-top: 15px;
+	margin-bottom: 15px;
+	float: right;
+}
+
+.auth-phone {
+	margin-top: 15px;
+}
+
+.auth-info {
+	margin-top: 10px;
+	text-align: center;
+	color: #2980b9;
+	font-family: 'Fira Sans', sans-serif;
+}
+
+.adv-alert {
+	margin-top: 15px;
+}
