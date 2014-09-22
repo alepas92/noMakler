@@ -11,7 +11,7 @@
     <link href='http://fonts.googleapis.com/css?family=Fira+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
   </head>
   <body>
-  		<div class="container" ng-controller="PanelController as panel">
+  		<div class="container" id="gl-container" ng-controller="PanelController as panel">
   			<!-- Nav bar -->
   			<nav class="navbar navbar-default" role="navigation" >
 				  <div class="container-fluid styled-nav">  
@@ -32,10 +32,10 @@
 				        	<a href ng-click="panel.selectTab(1)">Головна</a>
 				        </li>
 				        <li ng-class="{ active: panel.isSelected(2)}" class="styled-nav-li">
-				        	<a href ng-click="panel.selectTab(2)">Житло в новобудові</a>
+				        	<a href ng-click="panel.selectTab(2)">Реклама</a>
 				        </li>
 				        <li ng-class="{ active: panel.isSelected(3)}" class="styled-nav-li">
-				        	<a href ng-click="panel.selectTab(3)">Подати оголошення</a>
+				        	<a href ng-click="panel.selectTab(3)">Нове оголошення</a>
 				        </li>
 				      </ul>
 				      <ul class="nav navbar-nav navbar-right">
@@ -43,7 +43,7 @@
 				        	<a href ng-click="panel.selectTab(4)">Увійти</a>				        	
 				        </li>
 				        <li  ng-class="{ active: panel.isSelected(5)}" class="styled-nav-li">
-				        	<a href ng-click="panel.selectTab(5)">Зареєструватись</a>
+				        	<a href ng-click="panel.selectTab(5)">Реєстрація</a>
 				        </li>
 				</nav>
 				
@@ -57,10 +57,10 @@
 							
 						</div>
 						<div class="col-md-2 help-f-m">
-							<button type="button" class="btn btn-warning">Перевірити</button>
+							<button type="button" class="btn btn-warning" id="check-number">Перевірити</button>
 						</div>
 						<div class="col-md-12">
-							<ul class="rslides">
+							<ul class="rslides" id="rslides">
 							  <li><img src="images/pic6.jpg" alt=""></li>
 							  <li><img src="images/pic5.jpg" alt=""></li>
 							</ul>
@@ -306,7 +306,7 @@
 
 							<div class="col-md-4 search-eng-rent"><span class="se-text-centered">Оберіть бажаний тип операції</span></div>
 							<div class="col-md-8 search-eng-rent">
-								<select class="form-control">
+								<select class="form-control" id="owner-oper-type">
 									<option>Здача в оренду</option>
 									<option>Продаж</option>
 								</select>
@@ -345,7 +345,7 @@
 														
 						            		<div class="col-md-4 search-eng-rent"><span class="se-text-centered">Тип нерухомості</span></div>
 						            		<div class="col-md-8 search-eng-rent">
-						            			<select class="form-control">
+						            			<select class="form-control" id="owner-house-type">
 													<option>Місце в кімнаті</option>
 													<option>Кімната</option>
 													<option>Квартира</option>
@@ -369,8 +369,8 @@
 
 						            		<!-- What tech needed -->
 
-						            		<div class="col-md-4 search-eng-rent">Яка є побутова техніка?</div>
-						            		<div class="col-md-8 search-eng-rent">
+						            		<div class="col-md-4 search-eng-rent for-rent">Яка є побутова техніка?</div>
+						            		<div class="col-md-8 search-eng-rent for-rent">
 						            			<label class="checkbox-inline">
 													<input type="checkbox" value="holodulnuk"> Холодильник
 												</label>
@@ -384,24 +384,22 @@
 
 						            		<!-- Who will live -->
 
-						            		<div class="col-md-4 search-eng-rent"><span class="se-text-centered">Кого візьмете жити?</span></div>
-						            		<div class="col-md-8 search-eng-rent">
+						            		<div class="col-md-4 search-eng-rent for-rent"><span class="se-text-centered">Кого не берете жити?</span></div>
+						            		<div class="col-md-8 search-eng-rent for-rent">
 						            			<select class="form-control">
-						            				<option>Будь-кого</option>
-													<option>Один хлопець/чоловік</option>
-													<option>Одна дівчина/жінка</option>
-													<option>Декілька хлопців</option>
-													<option>Декілька дівчат</option>
-													<option>Пара</option>
-													<option>Сімейна пара без дітей</option>
-													<option>Сімейна пара з дітьми</option>
+						            				<option>Мені всеодно хто буде жити</option>
+													<option>Дівчат</option>
+													<option>Хлопців</option>
+													<option>Пари</option>
+													<option>Сімейні пари з дітьми</option>
+													<option>Інший варіант</option>
 												</select>
 						            		</div>
 											
 											<!-- Terms -->
 
-						            		<div class="col-md-4 search-eng-rent"><span class="se-text-centered">На який термін здам?</span></div>
-						            		<div class="col-md-8 search-eng-rent">
+						            		<div class="col-md-4 search-eng-rent for-rent"><span class="se-text-centered">На який термін здам?</span></div>
+						            		<div class="col-md-8 search-eng-rent for-rent">
 						            			<select class="form-control">
 													<option>Подобово</option>
 													<option>1 місяць</option>
@@ -426,8 +424,8 @@
 												<input type="text" class="form-control" placeholder="Введіть бажану ціну за місяць">
 											</div>
 
-											<div class="col-md-4 search-eng-rent"><span class="se-text-centered">Ціна без урахування комунальних послуг?</span></div>
-						            		<div class="col-md-8 search-eng-rent">
+											<div class="col-md-4 search-eng-rent for-rent"><span class="se-text-centered">Ціна без урахування комунальних послуг?</span></div>
+						            		<div class="col-md-8 search-eng-rent for-rent">
 						            			<select class="form-control">
 													<option>Так</option>
 													<option>Ні</option>
@@ -518,6 +516,8 @@
     <script src="/javascripts/bootstrap.min.js"></script>
     <script src="/javascripts/angular.min.js"></script>
     <script src="/javascripts/module/app.js"></script>
+    <script src="/javascripts/controller/changeInputs.js"></script>
+    <script src="/javascripts/controller/windowChange.js"></script>
     <script>
   $(function() {
     $(".rslides").responsiveSlides();
