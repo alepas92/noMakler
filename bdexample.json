@@ -1,0 +1,31 @@
+{
+	"country" : "Ukraine",
+	"cities" : 
+	[
+		{
+			"city-name" : "Lviv",
+			"city-regions" : ["Lychakivckii", "Frankivskii", "Shevchenkivskii"],
+			"phone-class" : "1"
+			"sites" :
+			[
+				{
+					"site-url" : "url",
+					"phone-tag" : "tag",
+					"advert-tag" : "tag"
+				}
+			],
+			"black-numbers" : ["number1", "number2"],
+			"white-numbers" : 
+			{
+				"advert" : "Text of advert",
+				"phone" : ["phone1"],
+				"date" : ""
+			}
+		},
+		{
+			"city-name" : "Hmelnytskii",
+			"city-regions" : ["Vustavka", "Ozerna", "Rakovo"],
+			"phone-class" : "2"
+		}
+	]
+}
