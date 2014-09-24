@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Admin panel</title>
+	<link rel="stylesheet" href="stylesheets/adm-pan-style.css">
+</head>
+<body>
+	<header class="adm-p-header">
+		<span class="adm-p-logo">Панель адміністратора</span>
+		<button class="create-new">Створити</button>
+	</header>
+	<section class="create-city">
+		<form action="">
+			<label for="country" class="margin-tb">Оберіть країну:</label>
+			<select name="country" class="margin-tb" id="country-selector">
+				<option value="ukraine" selected>Україна</option>
+				<option value="russia">Росія</option>
+			</select>
+			<label for="city" class="margin-tb">Вкажіть назву міста</label>
+			<input type="text" id="city" class="margin-tb" placeholder="Вкажіть місто">
+			<fieldset>
+				<label for="city-district" class="d-block margin-tb">Введіть райони міста</label>
+				<input type="text" id="city-district" class="margin-tb" placeholder="Введіть райони міста">
+			</fieldset>
+			<label for="phone-class" class="d-block margin-tb">Введіть міський номер телефону</label>
+			<input type="text" id="phone-class" class="margin-tb" placeholder="Номер телефону">
+			<input type="button" id="add-site" class="d-block margin-tb" value="Додати сайт">
+			<fieldset>
+				<label for="site-url" class="margin-tb">Введіть link для парсингу</label>
+				<input type="text" id="site-url" class="margin-tb" placeholder="Посилання на сайт">
+				<label for="phone-tag" class="d-block margin-tb">Введіть тег для номеру телефону</label>
+				<input type="text" id="phone-tag" placeholder="Тег для номеру телефону">
+				<label for="advert-tag" class="d-block margin-tb">Введіть тег для оголошення</label>
+				<input type="text" id="advert-tag" placeholder="Тег для оголошення">
+			</fieldset>
+			<div id="sites-info"></div>
+			<input type="button" class="d-block margin-tb" value="Зберегти і закінчити">
+		</form>
+	</section>
+	<script src="javascripts/db/db-engine.js"></script>
+	<script src="javascripts/FileSaver.js"></script>
+	<script src="/javascripts/jquery.min.js"></script>
+	<!-- <script src="javascripts/saveInfo.js"></script> -->
+	<script src="/javascripts/db/form-data.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+.adm-p-header {
+	height: 40px;
+	background: #999;
+}
+
+.adm-p-logo {
+	font-size: larger;
+	font-weight: 700;
+	line-height: 40px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.create-new {
+	float: right;
+	margin: 0px;
+	border: 0px;
+	height: 40px;
+	width: 10%;
+	background: black;
+	color: white;
+}
+
+.create-new:hover {
+	background: #333;
+}
+
+.d-block {
+	display: block;
+}
+
+.margin-tb {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.create-city {
+	width: 50%;
+	margin: 0 auto;
+}
