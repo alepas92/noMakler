@@ -17,26 +17,56 @@
 				<option value="ukraine" selected>Україна</option>
 				<option value="russia">Росія</option>
 			</select>
-			<label for="city" class="margin-tb">Вкажіть назву міста</label>
+			<label for="country-ph-code">Вкажіть телефонний код країни:</label>
+			<input type="text" id="country-ph-code" placeholder="Телефонний код країни">
+			<label for="country-mob-codes" class="d-block margin-tb">Введіть коди мобільних операторів країни</label>
+			<input type="text" class="d-block margin-tb" id="country-mob-codes" placeholder="Мобільні оператори країни">
+			<label for="city" class="d-block margin-tb">Вкажіть назву міста</label>
 			<input type="text" id="city" class="margin-tb" placeholder="Вкажіть місто">
 			<fieldset>
 				<label for="city-district" class="d-block margin-tb">Введіть райони міста</label>
 				<input type="text" id="city-district" class="margin-tb" placeholder="Введіть райони міста">
 			</fieldset>
+			<label for="phone-code-class" class="d-block margin-tb">Введіть міський код телефону</label>
+			<input type="text" id="phone-code-class" class="margin-tb" placeholder="Код телефону">
 			<label for="phone-class" class="d-block margin-tb">Введіть міський номер телефону</label>
 			<input type="text" id="phone-class" class="margin-tb" placeholder="Номер телефону">
-			<input type="button" id="add-site" class="d-block margin-tb" value="Додати сайт">
+			
 			<fieldset>
 				<label for="site-url" class="margin-tb">Введіть link для парсингу</label>
 				<input type="text" id="site-url" class="margin-tb" placeholder="Посилання на сайт">
+				<label for="url-oper-type" class="d-block margin-tb">Введіть тип операції сторінки</label>
+				<select name="oper-type" id="url-oper-type">
+					<option value="sell">Продаж</option>
+					<option value="rent">Оренда</option>
+					<option value="daily">Подобова</option>
+				</select>
+				<label for="url-house-type" class="d-block margin-tb">Введіть тип нерухомості сторінки</label>
+				<select name="house-type" id="url-house-type">
+					<option value="room">Кімната</option>
+					<option value="flat">Квартира</option>
+					<option value="house">Будинок</option>
+					<option value="country-house">Дача</option>
+					<option value="land">Земельна ділянка</option>
+				</select>
+				<label for="url-district" class="d-block margin-tb">Оберіть район</label>
+				<select name="districts" id="url-district">				
+				</select>
 				<label for="phone-tag" class="d-block margin-tb">Введіть тег для номеру телефону</label>
 				<input type="text" id="phone-tag" placeholder="Тег для номеру телефону">
 				<label for="advert-tag" class="d-block margin-tb">Введіть тег для оголошення</label>
 				<input type="text" id="advert-tag" placeholder="Тег для оголошення">
+				<input type="button" id="add-site" class="d-block margin-tb floated-right" value="Додати сайт">
 			</fieldset>
-			<div id="sites-info"></div>
-			<input type="button" class="d-block margin-tb" id="saveData" value="Зберегти і закінчити">
+			<div id="sites-info"><h3>База посилань на сайти</h3></div>
+			<input type="button" class="d-block margin-tb floated-right" id="saveData" value="Зберегти і закінчити">
 		</form>
+	</section>
+	<seclect id="data">
+		<option value="../public/javascripts/db/db_Україна_Львів.json"></option>
+	</select>
+	<section id="result">
+		
 	</section>
 	<script src="javascripts/db/db-engine.js"></script>
 	<script src="javascripts/FileSaver.js"></script>

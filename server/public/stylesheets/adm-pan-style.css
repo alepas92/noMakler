@@ -38,3 +38,23 @@
 	width: 50%;
 	margin: 0 auto;
 }
+
+.floated-right {
+	float: right;
+}
+
+#sites-info {
+	text-align: center;
+	margin-top: 20px;
+	padding: 10px;
+	background: #eaeaea;
+}
+
+.si-elem {
+	line-height: 35px;
+	height: 35px;
+}
+
+.si-elem:hover {
+	background: #d3d3d3;
+}
