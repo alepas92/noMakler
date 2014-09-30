@@ -8,7 +8,8 @@
 <body>
 	<header class="adm-p-header">
 		<span class="adm-p-logo">Панель адміністратора</span>
-		<button class="create-new">Створити</button>
+		<a href="get-data">Отримати дані з файлів</a>
+		<button id="create-new">Створити</button>
 	</header>
 	<section class="create-city">
 		<form action="">
@@ -44,7 +45,11 @@
 				<label for="url-house-type" class="d-block margin-tb">Введіть тип нерухомості сторінки</label>
 				<select name="house-type" id="url-house-type">
 					<option value="room">Кімната</option>
-					<option value="flat">Квартира</option>
+					<option value="1rflat">1 кімн.-квартира</option>
+					<option value="2rflat">2 кімн.-квартира</option>
+					<option value="3rflat">3 кімн.-квартира</option>
+					<option value="4rflat">4 кімн.-квартира</option>
+					<option value="5rflat">5 кімн.-квартира</option>
 					<option value="house">Будинок</option>
 					<option value="country-house">Дача</option>
 					<option value="land">Земельна ділянка</option>
@@ -60,13 +65,9 @@
 			</fieldset>
 			<div id="sites-info"><h3>База посилань на сайти</h3></div>
 			<input type="button" class="d-block margin-tb floated-right" id="saveData" value="Зберегти і закінчити">
+			<input type="button" class="margin-tb floated-right" id="saveTags" value="Зберегти теги">
+			<input type="button" class="margin-tb floated-right" id="reload" value="Додати нове місто">
 		</form>
-	</section>
-	<seclect id="data">
-		<option value="../public/javascripts/db/db_Україна_Львів.json"></option>
-	</select>
-	<section id="result">
-		
 	</section>
 	<script src="javascripts/db/db-engine.js"></script>
 	<script src="javascripts/FileSaver.js"></script>

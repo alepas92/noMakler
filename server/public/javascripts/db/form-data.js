@@ -28,6 +28,13 @@ $("#city-district").on("change", function() {
 	}
 });
 
+$("#create-new").on("click", function() {
+	$(".create-city").addClass("d-block");
+});
+
+$("#saveTags").on("click", formAllTags);
+$("#reload").on("click", reload);
+
 //This section form site objects
 
 function InfAbSite(siteUrl, phoneTag, advertTag, urlOperType, urlHouseType, urlDistrict) {
@@ -130,18 +137,63 @@ function createFile() {
 	var filemane = 'db_' + data.country + '_' + data.city.cityName;
 	var blob = new Blob([file], {type: "application/json"});
 	saveAs(blob, filemane + ".json");
-	location.reload();   
 }
 
 
-// Part 2
-// Parsing JSON files
 
-function getFile() {
-	var file = $("#data").val();
- 
-  $.getJSON(file, function(json) {
-    $("#result").html('');
-    });
-};
+
+function reload() {
+	location.reload();
+}
+
+
+//This block formed object of all cities and counties
+
+function tagsCreateFile(data) {
+	var file = JSON.stringify(data);
+	var filemane = 'db_tags';
+	var blob = new Blob([file], {type: "application/json"});
+	saveAs(blob, filemane + ".json");
+}
+
+function formAllTags() {
+	var	xhr = $.get("javascripts/db/db_tags.json", function(data) {
+	})
+	.done(function(data) {
+        var	allTagFileParsed = data,	
+			countriesLength = allTagFileParsed.length,
+			file,
+			flag = 0,
+			place,
+			objCountry = { //template of object
+				nameC : "", 
+				cities : []
+			},
+			globalData = getGlobalData();
+      	
+			for (var i = 0; i < countriesLength; i++) { //check if country exists
+				if (globalData.country == allTagFileParsed[i].nameC) {
+					flag = 1;
+					place = i;
+				}
+			}
+			if (flag != 0) {
+				for (var i=0; i < allTagFileParsed[place].cities.length; i++) { //pushing new cities
+					if (globalData.city.cityName != allTagFileParsed[place].cities[i]) {
+						allTagFileParsed[place].cities.push(globalData.city.cityName)
+					}
+				}
+				tagsCreateFile(allTagFileParsed);
+			} else { //if there is no such country we push object with this new country
+				objCountry.nameC = globalData.country;
+				objCountry.cities.push(globalData.city.cityName);
+				allTagFileParsed.push(objCountry);
+				tagsCreateFile(allTagFileParsed);
+			}
+	})
+} 
+
+function saveData() {
+
+}
 
