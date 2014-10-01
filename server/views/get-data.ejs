@@ -10,10 +10,18 @@
 		<span class="adm-p-logo">Панель адміністратора | Отримання даних</span>
 	</header>
 	<section class="get-data">
-		<form action="">
-			<label for="get-country">Вкажіть країну</label>
-			<input type="text" id="get-country">
+		<header>
+			<h3>Отримати дані по обраній локації</h3>
+		</header>
+		<form>
+			<select id="choose-country"></select>
+			<select id="choose-city"></select>
+			<input type="button" value="Отримати" id="get-links-from-file">
 		</form>
 	</section>
+	<section id="hidden-work"></section>
+	<script src="/javascripts/jquery.min.js"></script>
+	<script src="/javascripts/controller/uploadCountry.js"></script>
+	<script src="/javascripts/db/get-data.js"></script>
 </body>
 </html>

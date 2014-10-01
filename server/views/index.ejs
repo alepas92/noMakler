@@ -513,6 +513,29 @@
 						</form>
 
 					</div>
+				</section>
+				<section class="pop-up">
+					<form class="first-form">
+						<h1>Вітаємо Вас у системі <span class="logo-popup">Bez Maklera.com</span></h1>
+						<div class="alert alert-warning aligned-cent">
+							<p>Система Bez Maklera.com допоможе Вам знайти житло без плати будь-яким посередникам. Діє повністю на добровільних засадах.</p>
+						</div>
+						<label class="choose-label"><p>Оберіть мову ресурсу, якою Вам буде зручніше користуватись</p>
+							<select class="form-control" class="choose-select">
+  								<option>Українська</option>
+  								<option>Русский</option>
+							</select>
+						</label>
+						<label class="choose-label"><p>Оберіть країну з якою Ви хочете працювати</p>
+							<select class="form-control" class="choose-select" id="choose-country">
+							</select>
+						</label>
+						<label class="choose-label"><p>Оберіть місто з яким Ви хочете працювати</p>
+							<select class="form-control" class="choose-select" id="choose-city">
+							</select>
+						</label>
+						<button type="button" class="btn btn-success fl-block" id="enter-system">Почати користуватись системою</button>
+					</form>
 				</section>  		
 
     <script src="/javascripts/jquery.min.js"></script>
@@ -522,6 +545,7 @@
     <script src="/javascripts/module/app.js"></script>
     <script src="/javascripts/controller/changeInputs.js"></script>
     <script src="/javascripts/controller/windowChange.js"></script>
+    <script src="/javascripts/controller/uploadCountry.js"></script>
     <script>
   $(function() {
     $(".rslides").responsiveSlides();

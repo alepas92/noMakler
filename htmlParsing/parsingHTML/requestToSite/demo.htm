@@ -57,7 +57,8 @@ function doSomethingWithData(data) {
 	document.getElementById("code").innerHTML = data.contents;
 	var nobr = document.getElementById("code").getElementsByTagName("nobr"); 
 	for (var i=0; nobr.length; ++i) {
-		console.log(document.getElementById("code").getElementsByTagName("nobr")[i].innerText);
+		console.log(document.getElementById("code").getElementsByTagName("nobr")[i].innerText + i);
+
 	}
 	console.log(nobr);
 
