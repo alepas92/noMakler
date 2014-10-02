@@ -41,28 +41,38 @@ $(function() {
 
 
 <script>
-	$.ajaxSetup({
-    scriptCharset: "utf-8", 
-    contentType: "application/json; charset=utf-8"
-});
+// 	$.ajaxSetup({
+//     scriptCharset: "utf-8", 
+//     contentType: "application/json; charset=utf-8"
+// });
 
-$.getJSON('http://whateverorigin.org/get?url=' + 
-    encodeURIComponent('http://vashmagazin.ua/nerukhomist/kvartyry/halytskyy-rayon/odnokimnatni/%3Fitem_price1=&item_price2=&page=2') + '&callback=?',
-    function(data) {
-        console.log("> ", data);
-        doSomethingWithData(data);
-});
+// $.getJSON('http://whateverorigin.org/get?url=' + 
+//     encodeURIComponent('http://vashmagazin.ua/nerukhomist/kvartyry/halytskyy-rayon/odnokimnatni/%3Fitem_price1=&item_price2=&page=2') + '&callback=?',
+//     function(data) {
+//         console.log("> ", data);
+//         doSomethingWithData(data);
+// });
 
-function doSomethingWithData(data) {
-	document.getElementById("code").innerHTML = data.contents;
-	var nobr = document.getElementById("code").getElementsByTagName("nobr"); 
-	for (var i=0; nobr.length; ++i) {
-		console.log(document.getElementById("code").getElementsByTagName("nobr")[i].innerText + i);
+// function doSomethingWithData(data) {
+// 	document.getElementById("code").innerHTML = data.contents;
+// 	var nobr = document.getElementById("code").getElementsByTagName("nobr"); 
+// 	for (var i=0; nobr.length; ++i) {
+// 		console.log(document.getElementById("code").getElementsByTagName("nobr")[i].innerText + i);
 
-	}
-	console.log(nobr);
+// 	}
+// 	console.log(nobr);
 
-}
+// }
+ </script>
+
+<script>
+// $.ajaxPrefilter( "json script", function( options ) {
+//   options.crossDomain = true;
+// });
+$.get('http://www.corsproxy.com/' + 'vashmagazin.ua/nerukhomist/dilyanky-dachna-zabudova/lviv/?item_price1=&item_price2=&page=2',function(response) {
+	console.log(response)})
+
+
 </script>
 
 <script>
