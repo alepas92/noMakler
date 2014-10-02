@@ -12,43 +12,72 @@ function formFileName() { //This function wait for onclick event and form File n
 }
 
 function getLinksDB(fileName) {
-	var	xhr = $.get(fileName, function(data) {})
-	.done(function(data) {
-        var allData = data;
-        var allSitesInfoLength = allData.city.allSiteInfo.length;
-        var allAdvertsInfoFromOnePage = [];
-        var allAdvertsFullFromCity = [];
-        for (var i = 0; i < allSitesInfoLength; ++i) {
-        	var url = allData.city.allSiteInfo[i].siteUrl;  //Here in for we get all links
-        	var phoneTag = detectSiteTag(allData.city.allSiteInfo[0].phoneTag);   //Form tag into right form
-    		var advertTag = detectSiteTag(allData.city.allSiteInfo[0].advertTag);
-   //      	$.ajaxSetup({
+	  //       $.ajaxSetup({
    //  			scriptCharset: "utf-8", 
-   //  			contentType: "application/json; charset=utf-8"
-			// });                                      
-        	$.when($.getJSON("http://whateverorigin.org/get?url=" + encodeURIComponent(url) + "&callback=?")).then(function(data) {
-        				$("#hidden-work").innerHTML = data.contents;
-    					console.log(allData.city.allSiteInfo[i]);
-    					var formedInfoFromSite = formInfoFromSite(phoneTag, advertTag);
-    					//Here must be function which will detect type and name of internet resource
-    					allAdvertsInfoFromOnePage = vashMagazine(formedInfoFromSite);			//allAdvertsInfpFromOneFile will have all objects with info from one page
-    					for (var j = 0; j < allAdvertsInfoFromOnePage.length; ++j) {
-    						allAdvertsInfoFromOnePage[j].urlOperType = allData.city.allSiteInfo[i].urlOperType;
-    						allAdvertsInfoFromOnePage[j].urlHouseType = allData.city.allSiteInfo[i].urlHouseType;
-    						allAdvertsInfoFromOnePage[j].urlDistrict = allData.city.allSiteInfo[i].urlDistrict;
-    					}
-    					allAdvertsFullFromCity.push(allAdvertsInfoFromOnePage);
-        	        })          //Encoding of links
+   //  			contentType: "application/json; charset=utf-8",
+   //  			async: false
+			// });
+	var allData, allAdvertsFullFromCity = [], def;
+	var	xhr = $.ajax({
+		url: fileName,
+	});
+	xhr.done(function(data) {
+		allData = data;
+		var allSitesInfoLength = allData.city.allSiteInfo.length;
+		var allAdvertsInfoFromOnePage = [];
+		for (var i = 0; i < allSitesInfoLength; ++i) {
+			var url = allData.city.allSiteInfo[i].siteUrl;  //Here in for we get all links
+			var phoneTag = detectSiteTag(allData.city.allSiteInfo[0].phoneTag);   //Form tag into right form
+			var advertTag = detectSiteTag(allData.city.allSiteInfo[0].advertTag);
+			var encodedURIComponent = encodeURIComponent(url);
+			var encodedURItoRightForm = encodeURItoForm(encodedURIComponent);
+			console.log(encodeURIComponent(url));
+			console.log(decodeURIComponent(encodeURIComponent(url)));
+			// console.log(encodeURIComponent("?"));
+			// console.log(encodedURIComponent);
+			// console.log(encodedURItoRightForm);
+			//console.log(encodeURI(url));
 
+			def = $.getJSON("http://whateverorigin.org/get?url=" + encodedURItoRightForm + "&callback=?")
+			.done(function(data) {
+				for (var i = 0; i < $(data.contents).find("nobr").length; ++i) {
+					console.log($(data.contents).find("nobr")[i].innerText);
+				}
+				//console.log(">>>>>>>> " + "http://whateverorigin.org/get?url=" + encodedURItoRightForm + "&callback=?")
+				//$("#hidden-work").html(data.contents);
+				//console.log("Success");
+				//console.log(data.contents);
+				//console.log(allData);
+
+				var formedInfoFromSite = formInfoFromSite(phoneTag, advertTag);
+				console.log(formedInfoFromSite);
+				//Here must be function which will detect type and name of internet resource
+				allAdvertsInfoFromOnePage = vashMagazine(formedInfoFromSite);			//allAdvertsInfpFromOneFile will have all objects with info from one page
+				for (var j = 0; j < allAdvertsInfoFromOnePage.length; ++j) {
+					allAdvertsInfoFromOnePage[j].urlOperType = allData.city.allSiteInfo[i].urlOperType;
+					allAdvertsInfoFromOnePage[j].urlHouseType = allData.city.allSiteInfo[i].urlHouseType;
+					allAdvertsInfoFromOnePage[j].urlDistrict = allData.city.allSiteInfo[i].urlDistrict;
+				}
+				allAdvertsFullFromCity.push(allAdvertsInfoFromOnePage);
+			})
+			.error(function() {
+			 	console.log("ERROR");
+			});
 					// $.fail(function() {alert("error")});
 		}
-		var file = JSON.stringify(allAdvertsFullFromCity);
-		var nameOfFile = 'db_' + allData.country + '_' + allData.city.cityName + '_' + 'adverts';
-		var blob = new Blob([file], {type: "application/json"});
-		saveAs(blob, nameOfFile + ".json");  
-	})
+		$.when(xhr, def).done(function(fdata, sdata) {
+			console.log(fdata, sdata);
+			var file = JSON.stringify(allAdvertsFullFromCity);
+			var nameOfFile = 'db_' + allData.country + '_' + allData.city.cityName + '_' + 'adverts';
+			var blob = new Blob([file], {type: "application/json"});
+			saveAs(blob, nameOfFile + ".json"); 
+		})
+	})	
 }
 
+function encodeURItoForm(str) {
+	return str.replace("%3F","?");
+}
 
 function detectSiteTag(siteTag) {         //Here I detect site tag from allSiteInfo property of City JSON
 	var splitedTag = siteTag.split(" ");
@@ -76,7 +105,7 @@ function formInfoFromSite(phoneTag, advertTag) { //At this function I form objec
 		infoFromLink.phonePriceTagsInfo.push($(phoneTag)[i].innerText);
 	}
 	for (var i = 0; i < advertLength; ++i) {
-		infoFromLink.advertTagsInfo.push($(advertTag)[i].text());
+		infoFromLink.advertTagsInfo.push($(advertTag)[i].innerText);
 	}
 	return infoFromLink;
 }
