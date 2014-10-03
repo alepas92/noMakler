@@ -25,9 +25,8 @@ function getLinksDB(fileName) {
 		allData = data;
 		var allSitesInfoLength = allData.city.allSiteInfo.length;
 		var allAdvertsInfoFromOnePage = [];
-		$("#progress").html("Починається обробка файлу");
-		for (; i < 2; i++) {
-
+		$("#progress").html("Починається обробка сайтів");
+		for (i; i < allSitesInfoLength; i++) {
 			var url = allData.city.allSiteInfo[i].siteUrl;  //Here in for we get all links
 			var phoneTag = detectSiteTag(allData.city.allSiteInfo[0].phoneTag);   //Form tag into right form
 			var advertTag = detectSiteTag(allData.city.allSiteInfo[0].advertTag);
@@ -38,58 +37,43 @@ function getLinksDB(fileName) {
 			// console.log(decodeURIComponent(encodeURIComponent(url)));
 
 
-			def = $.ajax({url: "http://www.corsproxy.com/" + encodedURItoRightForm, async: false})
+			def = $.ajax({url: "http://www.corsproxy.com/" + encodedURItoRightForm, async: true})
 			//.done(function(data) {
-			//	console.log(i);
-				// for (var j = 0; j < $(data.contents).find(phoneTag).length; ++j) {
-				// 	console.log($(data.contents).find(phoneTag)[j].innerText);
-				// }
-				//console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<");
-				// var formedInfoFromSite = formInfoFromSite(phoneTag, advertTag);
-				// console.log(formedInfoFromSite);
-				// //Here must be function which will detect type and name of internet resource
-				// allAdvertsInfoFromOnePage = vashMagazine(formedInfoFromSite);			//allAdvertsInfpFromOneFile will have all objects with info from one page
-				// for (var j = 0; j < allAdvertsInfoFromOnePage.length; ++j) {
-				// 	allAdvertsInfoFromOnePage[j].urlOperType = allData.city.allSiteInfo[i].urlOperType;
-				// 	allAdvertsInfoFromOnePage[j].urlHouseType = allData.city.allSiteInfo[i].urlHouseType;
-				// 	allAdvertsInfoFromOnePage[j].urlDistrict = allData.city.allSiteInfo[i].urlDistrict;
-				// }
-				// allAdvertsFullFromCity.push(allAdvertsInfoFromOnePage);
+
 				
 				$.when(def).done(function(data) {
-					console.log(i);
+					console.log("Number of iteration = "+ i + " of " + allSitesInfoLength);
 					var obj = {
 						contents : data
 					}
-					console.log("Log when done");
-
 					for (var j = 0; j < $(obj.contents).find(phoneTag).length; ++j) {
-						infoFromLink.phonePriceTagsInfo.push($(obj.contents).find(phoneTag)[j].innerText);
-						
+						infoFromLink.phonePriceTagsInfo.push($(obj.contents).find(phoneTag)[j].innerText);			
 					}
 					for (var j = 0; j < $(obj.contents).find(advertTag).length; ++j) {
 						infoFromLink.advertTagsInfo.push($(obj.contents).find(advertTag)[j].innerText);
 						
-					}
-					
+					}	
 					$("#progress").html("Обробка сторінки закінчена");
-					
+					allAdvertsInfoFromOnePage = vashMagazine(infoFromLink);
+					for (var j = 0; j < allAdvertsInfoFromOnePage.length; ++j) {
+						allAdvertsInfoFromOnePage[j].url = encodedURItoRightForm;
+						allAdvertsInfoFromOnePage[j].urlOperType = allData.city.allSiteInfo[i].urlOperType;
+						allAdvertsInfoFromOnePage[j].urlHouseType = allData.city.allSiteInfo[i].urlHouseType;
+						allAdvertsInfoFromOnePage[j].urlDistrict = allData.city.allSiteInfo[i].urlDistrict;
+					}
+					allAdvertsFullFromCity.push(allAdvertsInfoFromOnePage);
 				})
-			//})
-			// .error(function() {
-			//  	console.log("ERROR");
-			// })
 
-					// $.fail(function() {alert("error")});
-		}
-		$.when(xhr, def).done(function(fdata, sdata) {
-			//console.log(fdata, sdata);
-			var file = JSON.stringify(allAdvertsFullFromCity);
-			var nameOfFile = 'db_' + allData.country + '_' + allData.city.cityName + '_' + 'adverts';
-			var blob = new Blob([file], {type: "application/json"});
-			saveAs(blob, nameOfFile + ".json"); 
-		})
-	})	
+			//})
+			$.when(xhr, def).done(function(fdata, sdata) {
+				//console.log(fdata, sdata);
+				var file = JSON.stringify(allAdvertsFullFromCity);
+				var nameOfFile = 'db_' + allData.country + '_' + allData.city.cityName + '_' + 'adverts';
+				var blob = new Blob([file], {type: "application/json"});
+				saveAs(blob, nameOfFile + ".json"); 
+			})
+		}	
+	})
 }
 
 function uriToForm(url) {
@@ -109,23 +93,7 @@ function detectSiteTag(siteTag) {         //Here I detect site tag from allSiteI
 	}
 }
 
-function formInfoFromSite(phoneTag, advertTag) { //At this function I form object with all phones, prices and adverts
-	var infoFromLink = {
-			phonePriceTagsInfo : [],
-			advertTagsInfo : []
-		},
-		phonePriceLength = $(phoneTag).length,
-		advertLength = $(advertTag).length;
 
-
-	for (var i = 0; i < phonePriceLength; ++i) {
-		infoFromLink.phonePriceTagsInfo.push($(phoneTag)[i].innerText);
-	}
-	for (var i = 0; i < advertLength; ++i) {
-		infoFromLink.advertTagsInfo.push($(advertTag)[i].innerText);
-	}
-	return infoFromLink;
-}
 
 //Next function must work only for VashMagazine site. Use Pattern
 //Also must be added an idintification of the resource to the file name
@@ -143,20 +111,37 @@ function vashMagazine(infoFromLink) {
 		phonePriceLength = infoFromLink.phonePriceTagsInfo.length,
 		advertsLength = infoFromLink.advertTagsInfo.length,
 		allAdverts = [],
-		counter = 0;
-	for (var j = 0; j < advertsLength; ++j) {
-		for (var i = 0; i < phonePriceLength; ++i) {
-			if (infoFromLink.phonePriceTagsInfo[i] != phoneRegExp) {  // if data not match RegExp - it's price, else - phone
-				allAdverts[j] = new FullAdvertObj();
-				allAdverts[j].price.push(infoFromLink.phonePriceTagsInfo[i])
-			} else  if ((infoFromLink.phonePriceTagsInfo[i] == phoneRegExp) && (counter == 2)) {
-				counter += 1;                                                        //Can't be more then two numbers on one advert
-				allAdverts[j].phone.push(infoFromLink.phonePriceTagsInfo[i]);
-			} else {
-				allAdverts[j].advert = infoFromLink.advertTagsInfo[j];
+		price,
+		phone,
+		advertCounter = 0,
+		phonePriceCounter = 0;
+		while (advertCounter < advertsLength) {
+			if (infoFromLink.phonePriceTagsInfo[phonePriceCounter] != undefined) {
+				// console.log("In cycle advertsLength");
+				price = [];
+				phone = [];
+				for (var priceCounter = 0; priceCounter < 4; ++priceCounter) {
+					if (infoFromLink.phonePriceTagsInfo[phonePriceCounter] != undefined) {
+						price.push(infoFromLink.phonePriceTagsInfo[phonePriceCounter]);
+						phonePriceCounter += 1;
+					}
+				}
+				for (var phoneCounter = 0; phoneCounter < 2; ++phoneCounter) {
+					if (infoFromLink.phonePriceTagsInfo[phonePriceCounter] != undefined) {
+						if (infoFromLink.phonePriceTagsInfo[phonePriceCounter].match(phoneRegExp)) {
+							phone.push(infoFromLink.phonePriceTagsInfo[phonePriceCounter]);
+							phonePriceCounter += 1;
+						}		
+					}
+				}
+				allAdverts[advertCounter] = new FullAdvertObj();
+				allAdverts[advertCounter].price = price;
+				allAdverts[advertCounter].phone = phone;
+				allAdverts[advertCounter].advert = infoFromLink.advertTagsInfo[advertCounter];
 			}
+			advertCounter += 1;
 		}
-	}
-	return allAdverts;	
+	return allAdverts;
 }
+
 
