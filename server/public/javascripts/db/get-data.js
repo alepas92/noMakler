@@ -4,6 +4,23 @@ $("#get-links-from-file").on("click", function() { //Event for button
 
 });
 
+$("#links-length").on("click", function() {
+	var fileName = formFileName();
+	getLinksLength(fileName);
+});
+
+function getLinksLength(fileName) {
+	var	xhr = $.ajax({
+		url: fileName,
+		//async: false
+	});
+	$.when(xhr).done(function(data) {
+		allData = data;
+		var allSitesInfoLength = allData.city.allSiteInfo.length;
+		$("#links-length-result").html("Кількість посилань: " + allSitesInfoLength);
+	});
+}
+
 function formFileName() { //This function wait for onclick event and form File name
 	var country = $("#choose-country").val();
 	var city = $("#choose-city").val();
@@ -12,10 +29,12 @@ function formFileName() { //This function wait for onclick event and form File n
 }
 
 function getLinksDB(fileName) {
+	var from = $("#from").val(), to = $("#to").val();
+	console.log(from, to);
 	var allData, allAdvertsFullFromCity = [], def, i = 0, counter = 0;
 	var	xhr = $.ajax({
 		url: fileName,
-		//async: false
+		async: false
 	});
 	var infoFromLink = {
 			phonePriceTagsInfo : [],
@@ -26,7 +45,7 @@ function getLinksDB(fileName) {
 		var allSitesInfoLength = allData.city.allSiteInfo.length;
 		var allAdvertsInfoFromOnePage = [];
 		$("#progress").html("Починається обробка сайтів");
-		for (i; i < allSitesInfoLength; i++) {
+		for (from; from < to; from++) {
 			var url = allData.city.allSiteInfo[i].siteUrl;  //Here in for we get all links
 			var phoneTag = detectSiteTag(allData.city.allSiteInfo[0].phoneTag);   //Form tag into right form
 			var advertTag = detectSiteTag(allData.city.allSiteInfo[0].advertTag);
@@ -37,12 +56,12 @@ function getLinksDB(fileName) {
 			// console.log(decodeURIComponent(encodeURIComponent(url)));
 
 
-			def = $.ajax({url: "http://www.corsproxy.com/" + encodedURItoRightForm, async: true})
+			def = $.ajax({url: "http://www.corsproxy.com/" + encodedURItoRightForm, async: false})
 			//.done(function(data) {
 
 				
 				$.when(def).done(function(data) {
-					console.log("Number of iteration = "+ i + " of " + allSitesInfoLength);
+					console.log("Number of iteration = "+ from + " of " + to);
 					var obj = {
 						contents : data
 					}
